@@ -1,4 +1,4 @@
 interface:
-  display_name: "OpenClaw Discord Voice"
+  display_name: "OpenClaw Discord Voice Input Skill"
   short_description: "Install Discord DM voice input for OpenClaw"
-  default_prompt: "Use $openclaw-discord-dm-voice to install Discord DM voice input for an OpenClaw home."
+  default_prompt: "Use $openclaw-discord-voice-input-skill to install Discord voice input for an OpenClaw home."

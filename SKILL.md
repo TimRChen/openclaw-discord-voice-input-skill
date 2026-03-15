@@ -1,5 +1,5 @@
 ---
-name: openclaw-discord-dm-voice
+name: openclaw-discord-voice-input-skill
 description: Install and maintain a free Discord DM voice-input bridge for an existing OpenClaw home. Use when a user wants Discord private voice messages transcribed locally with faster-whisper and forwarded into OpenClaw without paid APIs, especially on macOS launchd-based setups.
 ---
 
