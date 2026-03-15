@@ -30,11 +30,13 @@ No voice channel plumbing. No paid speech API. No need to re-discover the same s
 ## What It Does
 
 - Receives private voice messages sent to your Discord bot
+- Becomes the single DM ingress path for Discord private chats, so voice and text do not split into separate sessions
 - Transcribes audio locally with `faster-whisper`
 - Forwards the transcript into OpenClaw
 - Deploys a macOS `launchd` service for the voice bridge
 - Adds `oc-voice-*` shell aliases for lifecycle management
 - Disables OpenClaw's native audio attachment preflight to avoid racing the bridge
+- Disables native Discord DM intake so raw voice attachments do not create duplicate sessions
 
 ## Trust Signals
 

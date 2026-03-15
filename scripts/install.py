@@ -45,6 +45,10 @@ def patch_openclaw_json(config_path: Path) -> None:
     media = tools.setdefault("media", {})
     audio = media.setdefault("audio", {})
     audio["enabled"] = False
+    channels = data.setdefault("channels", {})
+    discord = channels.setdefault("discord", {})
+    dm = discord.setdefault("dm", {})
+    dm["enabled"] = False
     config_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 

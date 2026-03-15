@@ -75,6 +75,10 @@ function isVoiceInputMessage(message) {
   return Boolean(message.flags?.has(MessageFlags.IsVoiceMessage)) || [...message.attachments.values()].some(isAudioAttachment);
 }
 
+function isPlainTextInputMessage(message) {
+  return !isVoiceInputMessage(message) && Boolean(String(message.content || "").trim());
+}
+
 async function downloadAttachment(attachment, messageId) {
   const url = attachment.url;
   const ext = path.extname(attachment.name || "") || ".ogg";
@@ -134,8 +138,7 @@ async function transcribeAudio(inputPath) {
   return String(parsed.text || "").trim();
 }
 
-async function runOpenClawAgent(userId, transcript) {
-  const prompt = `[Voice message transcript]\n${transcript}`;
+async function runOpenClawAgent(userId, message) {
   await runProcess(process.execPath, [
     OPENCLAW_ENTRYPOINT,
     "agent",
@@ -144,44 +147,52 @@ async function runOpenClawAgent(userId, transcript) {
     "--to",
     `user:${userId}`,
     "--message",
-    prompt,
+    message,
     "--deliver",
   ]);
 }
 
-async function handleVoiceMessage(message, allowedUsers) {
+async function handleDmMessage(message, allowedUsers) {
   if (message.author.bot) return;
   if (message.guildId) return;
   if (allowedUsers.size > 0 && !allowedUsers.has(normalizeDiscordUserId(message.author.id))) return;
-  if (!isVoiceInputMessage(message)) return;
+  const isVoice = isVoiceInputMessage(message);
+  const isPlainText = isPlainTextInputMessage(message);
+  if (!isVoice && !isPlainText) return;
   if (processing.has(message.id)) return;
 
   processing.add(message.id);
   let localPath;
   try {
     await message.channel.sendTyping();
-    try {
-      await message.react("🎙️");
-    } catch {}
+    if (isVoice) {
+      try {
+        await message.react("🎙️");
+      } catch {}
 
-    const attachment = [...message.attachments.values()].find(isAudioAttachment);
-    if (!attachment) throw new Error("No supported audio attachment found.");
+      const attachment = [...message.attachments.values()].find(isAudioAttachment);
+      if (!attachment) throw new Error("No supported audio attachment found.");
 
-    localPath = await downloadAttachment(attachment, message.id);
-    const transcript = await transcribeAudio(localPath);
-    if (!transcript) {
-      await message.reply("这条语音我没转出有效文字。可以再发一条更清晰一点的语音。");
-      return;
+      localPath = await downloadAttachment(attachment, message.id);
+      const transcript = await transcribeAudio(localPath);
+      if (!transcript) {
+        await message.reply("这条语音我没转出有效文字。可以再发一条更清晰一点的语音。");
+        return;
+      }
+
+      await runOpenClawAgent(message.author.id, `[Voice message transcript]\n${transcript}`);
+    } else if (isPlainText) {
+      await runOpenClawAgent(message.author.id, String(message.content || "").trim());
     }
 
-    await runOpenClawAgent(message.author.id, transcript);
     try {
       await message.react("✅");
     } catch {}
   } catch (error) {
     console.error(`[voice-bridge] ${message.id}: ${String(error)}`);
     try {
-      await message.reply(`语音转写失败：${String(error)}`);
+      const prefix = isVoice ? "语音转写失败" : "消息转发失败";
+      await message.reply(`${prefix}：${String(error)}`);
     } catch {}
   } finally {
     processing.delete(message.id);
@@ -208,7 +219,7 @@ async function main() {
   });
 
   client.on("messageCreate", async (message) => {
-    await handleVoiceMessage(message, allowedUsers);
+    await handleDmMessage(message, allowedUsers);
   });
 
   client.on("error", (error) => {

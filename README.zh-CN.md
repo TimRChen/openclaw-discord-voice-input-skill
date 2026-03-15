@@ -30,11 +30,13 @@
 ## 它会做什么
 
 - 接收发给 Discord bot 的私聊语音消息
+- 接管 Discord 私聊入口，避免文字和语音分别落到两条不同会话里
 - 用本地 `faster-whisper` 转写音频
 - 将转写文本转交给 OpenClaw
 - 部署一个用于语音桥接的 macOS `launchd` 服务
 - 增加 `oc-voice-*` 系列 shell alias 方便管理
 - 关闭 OpenClaw 原生的音频附件预处理，避免与桥接流程抢占处理
+- 关闭 OpenClaw 原生的 Discord 私聊入口，避免原始语音附件再生成重复会话
 
 ## 可信信号
 
