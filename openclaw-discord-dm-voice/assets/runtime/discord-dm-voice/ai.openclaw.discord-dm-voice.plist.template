@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>ai.openclaw.discord-dm-voice</string>
+
+    <key>Comment</key>
+    <string>OpenClaw Discord DM voice bridge</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ThrottleInterval</key>
+    <integer>1</integer>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>__OPENCLAW_NODE__</string>
+      <string>__OPENCLAW_HOME__/runtime/discord-dm-voice/voice-bridge.mjs</string>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>__OPENCLAW_HOME__/logs/discord-dm-voice.log</string>
+    <key>StandardErrorPath</key>
+    <string>__OPENCLAW_HOME__/logs/discord-dm-voice.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>HOME</key>
+      <string>__HOME__</string>
+      <key>TMPDIR</key>
+      <string>__TMPDIR__</string>
+      <key>PATH</key>
+      <string>__HOME__/.local/bin:__HOME__/.nvm:__HOME__/.npm-global/bin:__HOME__/bin:__HOME__/.volta/bin:__HOME__/.asdf/shims:__HOME__/.bun/bin:__HOME__/Library/Application Support/fnm/aliases/default/bin:__HOME__/.fnm/aliases/default/bin:__HOME__/Library/pnpm:__HOME__/.local/share/pnpm:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+      <key>OPENCLAW_HOME</key>
+      <string>__OPENCLAW_HOME__</string>
+      <key>OPENCLAW_VOICE_MODEL</key>
+      <string>__OPENCLAW_VOICE_MODEL__</string>
+      <key>OPENCLAW_VOICE_LANGUAGE</key>
+      <string>__OPENCLAW_VOICE_LANGUAGE__</string>
+      <key>OPENCLAW_VOICE_PYTHON</key>
+      <string>__OPENCLAW_VOICE_PYTHON__</string>
+      <key>KMP_DUPLICATE_LIB_OK</key>
+      <string>TRUE</string>
+      <key>OMP_NUM_THREADS</key>
+      <string>1</string>
+      <key>HF_HUB_DISABLE_TELEMETRY</key>
+      <string>1</string>
+      <key>TOKENIZERS_PARALLELISM</key>
+      <string>false</string>
+    </dict>
+  </dict>
+</plist>

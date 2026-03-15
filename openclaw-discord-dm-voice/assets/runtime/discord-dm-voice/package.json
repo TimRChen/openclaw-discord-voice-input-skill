@@ -1,0 +1,8 @@
+{
+  "name": "openclaw-discord-dm-voice",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "discord.js": "^14.25.1"
+  }
+}
