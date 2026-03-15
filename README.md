@@ -59,6 +59,16 @@ README.zh-CN.md
 
 ## Install
 
+Install from agentskill.sh:
+
+<https://agentskill.sh/@timrchen/openclaw-discord-voice-input-skill>
+
+```text
+/learn @timrchen/openclaw-discord-voice-input-skill
+```
+
+Or install from the repository directly:
+
 ```bash
 python3 scripts/install.py --openclaw-home ~/.openclaw
 ```
