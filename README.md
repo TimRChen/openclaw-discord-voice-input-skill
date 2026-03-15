@@ -8,20 +8,20 @@
 ![quick validate passed](https://img.shields.io/badge/quick__validate-passed-1a7f37?style=flat-square)
 ![install smoke tested](https://img.shields.io/badge/install-smoke--tested-f0883e?style=flat-square)
 
-Turn Discord voice notes into live OpenClaw input in minutes, with local `faster-whisper` transcription and no paid speech API in the loop.
+Add voice input to OpenClaw through Discord DMs, using local `faster-whisper` transcription and no paid speech API.
 
-This repository is also a valid OpenClaw skill repository. The skill entrypoint is [`SKILL.md`](./SKILL.md), and the repository root is the skill root.
+This repository is also a valid OpenClaw skill repository. [`SKILL.md`](./SKILL.md) is the skill entrypoint, and the repository root is the skill root.
 
 ## Why This Skill
 
-If you want a lighter voice workflow than "join a voice channel and stream audio", this skill takes the pragmatic route:
+If you want voice input without building a full live-audio stack, this skill takes the simpler route:
 
 - DM the bot a Discord voice message
 - Transcribe it locally
 - Feed the transcript into OpenClaw
 - Get the reply back in the same chat
 
-The result is simple, cheap, and much easier to keep running.
+It is easier to install, cheaper to run, and much easier to keep stable over time.
 
 ## What It Does
 
@@ -34,11 +34,11 @@ The result is simple, cheap, and much easier to keep running.
 
 ## Trust Signals
 
-- `skill-vetter reviewed`: checked for obvious red flags, unnecessary scope, and suspicious install behavior
-- `quick_validate passed`: the skill structure validates cleanly as an OpenClaw skill
-- `install smoke-tested`: the installer was exercised against a temporary OpenClaw home and verified to render files, patch config, and generate the launchd setup correctly
+- `skill-vetter reviewed`: checked for obvious red flags, excessive scope, and suspicious install behavior
+- `quick_validate passed`: the repository validates cleanly as an OpenClaw skill
+- `install smoke-tested`: the installer was run against a temporary OpenClaw home to verify file generation, config patching, and launchd setup
 
-These badges mean the repository was reviewed and smoke-tested. They do not mean "official OpenClaw distribution" or "universally safe on every machine".
+These badges mean the repository was reviewed and smoke-tested. They do not mean this is an official OpenClaw release, or that it is guaranteed to behave the same way on every machine.
 
 ## Repository Layout
 

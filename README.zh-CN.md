@@ -8,20 +8,20 @@
 ![quick_validate 通过](https://img.shields.io/badge/quick__validate-passed-1a7f37?style=flat-square)
 ![安装冒烟验证](https://img.shields.io/badge/install-smoke--tested-f0883e?style=flat-square)
 
-把 Discord 私聊语音消息，快速接成 OpenClaw 的可用输入链路，全程本地 `faster-whisper` 转写，不引入付费语音 API。
+把 Discord 私聊语音消息接进 OpenClaw，使用本地 `faster-whisper` 转写，不依赖付费语音 API。
 
-这个仓库本身也是一个合法的 OpenClaw skill 仓库。Skill 入口文件是 [`SKILL.md`](./SKILL.md)，仓库根目录本身就是 skill 根目录。
+这个仓库本身也是一个合法的 OpenClaw skill 仓库。[`SKILL.md`](./SKILL.md) 是 skill 入口文件，仓库根目录本身就是 skill 根目录。
 
 ## 为什么用这套
 
-如果你不想走“让 bot 进语音频道实时听”的重方案，这个 skill 走的是更稳的路径：
+如果你不想为了语音输入搭一整套实时音频链路，这个 skill 走的是更轻的一条路：
 
 - 直接给 bot 发 Discord 私聊语音
 - 本地完成转写
 - 把文本交给 OpenClaw
 - 在同一个聊天里拿到回复
 
-整体更轻、更省钱，也更适合长期跑着。
+安装更简单，运行成本更低，长期维护也更省心。
 
 ## 它会做什么
 
@@ -34,11 +34,11 @@
 
 ## 可信信号
 
-- `skill-vetter reviewed`：按 skill-vetter 的思路检查过明显红旗、权限范围和可疑安装行为
-- `quick_validate passed`：skill 结构已通过 OpenClaw skill 校验
-- `install smoke-tested`：安装脚本已经在临时 OpenClaw 目录里跑过，确认会正确生成文件、改配置并产出 launchd 相关文件
+- `skill-vetter reviewed`：按 skill-vetter 的思路检查过明显红旗、过宽权限和可疑安装行为
+- `quick_validate passed`：仓库结构已通过 OpenClaw skill 校验
+- `install smoke-tested`：安装脚本已经在临时 OpenClaw 目录里跑过，确认会正确生成文件、修改配置并产出 launchd 所需文件
 
-这些标识表示“已审查、已冒烟验证”，不表示“官方 OpenClaw 发行版”或“在所有机器上零差异可用”。
+这些标识表示“做过审查，也做过冒烟验证”，不表示“这是官方 OpenClaw 发布物”，也不表示“在所有机器上都会完全一样地工作”。
 
 ## 仓库结构
 
