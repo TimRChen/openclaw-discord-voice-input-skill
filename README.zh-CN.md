@@ -1,4 +1,4 @@
-# OpenClaw Discord 私聊语音 Skill
+# OpenClaw Discord 语音输入 Skill
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
@@ -10,7 +10,7 @@
 
 这个 skill 就是为了解决一个很实际的问题：如果你平时通过 Discord 跟 OpenClaw 交互，老是打字很快就烦了。
 
-装上它之后，你只要在 Discord 私聊里给 bot 发语音，它会在本地用 `faster-whisper` 转成文字，再把文本交给 OpenClaw。
+装上它之后，你只要在 Discord 私聊窗口里给 OpenClaw bot 发语音，它会在本地用 `faster-whisper` 转成文字，再把文本交给 OpenClaw。
 
 常见的坑我已经提前踩过一轮了，这个仓库也做过 `skill-vetter` 审查、skill 结构校验和安装冒烟验证。
 
@@ -20,7 +20,7 @@
 
 如果你的目标很简单，就是“我想在 Discord 里跟 OpenClaw 说话，不想一直打字”，那这套就是更省事的做法：
 
-- 直接给 bot 发 Discord 私聊语音
+- 在 Discord 私聊窗口里给 bot 发语音
 - 本地完成转写
 - 把文本交给 OpenClaw
 - 在同一个聊天里拿到回复
@@ -29,7 +29,7 @@
 
 ## 它会做什么
 
-- 接收 Discord 私聊语音消息
+- 接收发给 Discord bot 的私聊语音消息
 - 用本地 `faster-whisper` 转写音频
 - 将转写文本转交给 OpenClaw
 - 部署一个用于语音桥接的 macOS `launchd` 服务
@@ -77,11 +77,11 @@ oc-voice-status
 oc-voice-logs
 ```
 
-然后在 Discord 私聊里给 bot 发一条新的语音消息。
+然后在 Discord 私聊窗口里给 bot 发一条新的语音消息。
 
 ## 说明
 
 - 目标平台：macOS + `launchd`
-- 适用范围：仅 Discord 私聊语音消息
+- 适用范围：发给 Discord bot 的私聊语音消息
 - 前提假设：`~/.openclaw/openclaw.json` 里已经配置好 Discord
 - 定位：社区 skill，不是官方 OpenClaw 发布物

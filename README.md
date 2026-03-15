@@ -1,4 +1,4 @@
-# OpenClaw Discord DM Voice Skill
+# OpenClaw Discord Voice Input Skill
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
@@ -10,7 +10,7 @@
 
 Built for one very practical reason: if you use OpenClaw through Discord, typing every prompt gets old fast.
 
-This skill fixes that. Send the bot a voice message in Discord DM, transcribe it locally with `faster-whisper`, and pass the transcript straight into OpenClaw.
+This skill fixes that. Send your OpenClaw bot a private voice message on Discord, transcribe it locally with `faster-whisper`, and pass the transcript straight into OpenClaw.
 
 Most of the annoying setup pitfalls have already been worked through, and the repository has been reviewed with `skill-vetter`, validated as a proper skill, and smoke-tested against a temporary OpenClaw home.
 
@@ -20,7 +20,7 @@ This repository is also a valid OpenClaw skill repository. [`SKILL.md`](./SKILL.
 
 If your goal is simply "I want to talk to OpenClaw in Discord instead of typing all the time", this is the lightweight way to do it:
 
-- DM the bot a Discord voice message
+- Send the bot a voice message in a Discord private chat
 - Transcribe it locally
 - Feed the transcript into OpenClaw
 - Get the reply back in the same chat
@@ -29,7 +29,7 @@ No voice channel plumbing. No paid speech API. No need to re-discover the same s
 
 ## What It Does
 
-- Receives Discord private voice messages
+- Receives private voice messages sent to your Discord bot
 - Transcribes audio locally with `faster-whisper`
 - Forwards the transcript into OpenClaw
 - Deploys a macOS `launchd` service for the voice bridge
@@ -77,11 +77,11 @@ oc-voice-status
 oc-voice-logs
 ```
 
-Then send a fresh voice message to the bot in a Discord DM.
+Then send a fresh voice message to the bot in a Discord private chat.
 
 ## Notes
 
 - Target platform: macOS with `launchd`
-- Scope: Discord DM voice messages only
+- Scope: private voice messages sent to a Discord bot
 - Assumption: Discord is already configured in `~/.openclaw/openclaw.json`
 - Positioning: community skill, not an official OpenClaw release
